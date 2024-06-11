@@ -159,4 +159,4 @@ const showRecipe = async function () {
 
 showRecipe();
 
-window.addEventListener('hashchange', showRecipe);
+['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe));
