@@ -47,4 +47,3 @@ const init = function () {
 };
 
 init();
-controlSearchResults();
