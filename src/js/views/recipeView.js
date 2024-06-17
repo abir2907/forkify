@@ -7,6 +7,17 @@ class RecipeView extends View {
   _errorMessage = 'We could not find that recipe. PLease try another one!';
   _message = '';
 
+  addHandlerRender(handler) {
+    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  }
+
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--update-servings');
+      if (!btn) return;
+      handler();
+    });
+  }
   _generateMarkup() {
     return `
     <figure class="recipe__fig">
@@ -38,12 +49,12 @@ class RecipeView extends View {
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings">
                 <svg>
                   <use href="${icons}#icon-minus-circle"></use>
                 </svg>
               </button>
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings">
                 <svg>
                   <use href="${icons}#icon-plus-circle"></use>
                 </svg>
@@ -89,18 +100,6 @@ class RecipeView extends View {
           </a>
         </div>
     `;
-  }
-
-  addHandlerRender(handler) {
-    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
-  }
-
-  addHandlerUpdateServings(handler) {
-    this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.btn--tiny');
-      if (!btn) return;
-      handler();
-    });
   }
 
   _generateMarkupIngredient(ing) {
