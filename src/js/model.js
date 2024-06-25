@@ -116,7 +116,7 @@ export const uploadRecipe = async function (newRecipe) {
       const [quantity, unit, description] = ing[1]
         .replaceAll(' ', '')
         .split(',');
-      return { quantity, unit, description };
+      return { quantity: quantity ? +quantity : null, unit, description };
     });
   console.log(ingredients);
 };
