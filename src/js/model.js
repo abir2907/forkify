@@ -108,3 +108,10 @@ init();
 const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
+
+export const uploadRecipe = async function (newRecipe) {
+  const ingredients = Object.entries(newRecipe).filter(
+    entry => entry[0].startsWith('ingredient') && entry[1] !== ''
+  );
+  console.log(ingredients);
+};
